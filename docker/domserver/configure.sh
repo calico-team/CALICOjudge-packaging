@@ -79,5 +79,14 @@ sed -i "s/^set \$prefix .*;$/set \$prefix \"\";/" "$NGINX_CONFIG_FILE"
 sed -i '/access_log/d' "$NGINX_CONFIG_FILE"
 sed -i '/error_log/d' "$NGINX_CONFIG_FILE"
 
+# Enable OPCache
+echo "opcache.preload=/opt/domjudge/domserver/webapp/config/preload.php" >> "$php_folder/fpm/php.ini"
+echo "opcache.preload_user=www-data" >> "$php_folder/fpm/php.ini"
+echo "opcache.memory_consumption=512" >> "$php_folder/fpm/php.ini"
+echo "opcache.max_accelerated_files=20000" >> "$php_folder/fpm/php.ini"
+echo "opcache.validate_timestamps=0" >> "$php_folder/fpm/php.ini"
+echo "realpath_cache_size=4096K" >> "$php_folder/fpm/php.ini"
+echo "realpath_cache_ttl=600" >> "$php_folder/fpm/php.ini"
+
 # Fix permissions on cache and log directories
 chown www-data: -R /opt/domjudge/domserver/webapp/var

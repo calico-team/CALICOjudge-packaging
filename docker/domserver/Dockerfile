@@ -10,7 +10,7 @@ RUN apt update \
 	gcc g++ make acl zip unzip \
 	php-cli php-zip \
 	php-gd php-curl php-mysql php-json php-intl \
-	php-gmp php-xml php-mbstring \
+	php-gmp php-xml php-mbstring php-opcache\
 	sudo bsdmainutils ntp libcgroup-dev procps \
 	python3-venv fontconfig \
 	texlive-latex-recommended texlive-latex-extra \
@@ -57,7 +57,7 @@ RUN apt update \
 	acl curl zip unzip supervisor mariadb-client apache2-utils \
 	nginx php-cli php-fpm php-zip \
 	php-gd php-curl php-mysql php-json php-intl \
-	php-gmp php-xml php-mbstring php-ldap \
+	php-gmp php-xml php-mbstring php-ldap php-opcache\
 	enscript lpr \
 	ca-certificates python3-yaml python3-requests \
 	&& rm -rf /var/lib/apt/lists/*
