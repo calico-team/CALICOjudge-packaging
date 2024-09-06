@@ -126,7 +126,7 @@ With DNS configured, you can now access the web interface on [http://domjudge.ex
 The following environment variables are supported by the `domserver` container:
 
 * `CONTAINER_TIMEZONE` (defaults to `Europe/Amsterdam`): allows you to change the timezone used inside the container.
-* `MYSQL_HOST` (defaults to `mariadb`): set the host to connect to for MySQL. Can be hostname or IP. Docker will add hostnames for any containers you `--link`, so in the example above, the MariaDB container will be available under the hostname `mariadb`.
+* `MYSQL_HOST` (defaults to `mariadb`): set the host to connect to for MySQL. Can be hostname or IP.
 * `MYSQL_USER` (defaults to `domjudge`): set the user to use for connecting to MySQL.
 * `MYSQL_PASSWORD` (defaults to `domjudge`): set the password to use for connecting to MySQL.
 * `MYSQL_ROOT_PASSWORD` (defaults to `domjudge`): set the root password to use for connecting to MySQL.
@@ -188,7 +188,7 @@ When using the optional Traefik reverse proxy, deploy the stack defined in https
 To run a single judgehost, run the following command:
 
 ```bash
-docker run -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name judgehost-0 --net dj --hostname judgedaemon-0 -e DAEMON_ID=0 domjudge/judgehost:latest
+docker run -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --net dj --hostname judgedaemon-0 -e DAEMON_ID=0 domjudge/judgehost:latest
 ```
 
 Again, replace `latest` with a specific version if desired. Make sure the version matches the version of the domserver.
@@ -242,7 +242,7 @@ echo 127.0.0.1 $(hostname) | sudo tee -a /etc/hosts
 
 ###################################################
 # Fill in these (secret) variables yourself!!
-sudo docker run -d --restart=on-failure --network host --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name judgehost -e DOMSERVER_BASEURL=your_baseurl -e JUDGEDAEMON_USERNAME=your_username -e JUDGEDAEMON_PASSWORD=your_password domjudge/judgehost:7.0.3
+sudo docker run -d --restart=on-failure --network host --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost -e DOMSERVER_BASEURL=your_baseurl -e JUDGEDAEMON_USERNAME=your_username -e JUDGEDAEMON_PASSWORD=your_password domjudge/judgehost:7.0.3
 ###################################################
 
 # Enable cgroup functionality that judgehost needs, this requires a reboot
