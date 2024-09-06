@@ -1,6 +1,6 @@
 #!/bin/sh -eu
 
-cd /domjudge-src/domjudge*
+cd /domjudge-src/CALICOjudge*
 chown -R domjudge: .
 # If we used a local source tarball, it might not have been built yet
 sudo -u domjudge make configure

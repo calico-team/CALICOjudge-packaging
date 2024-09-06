@@ -159,6 +159,10 @@ echo "open_file_cache          max=1000 inactive=20s;" >> ${NGINX_CONFIG_FILE}
 echo "open_file_cache_valid    30s;" >> ${NGINX_CONFIG_FILE}
 echo "open_file_cache_min_uses 2;" >> ${NGINX_CONFIG_FILE}
 echo "open_file_cache_errors   on;" >> ${NGINX_CONFIG_FILE}
+echo "proxy_send_timeout 300s;" >> ${NGINX_CONFIG_FILE}
+echo "proxy_read_timeout 300s;" >> ${NGINX_CONFIG_FILE}
+echo "fastcgi_send_timeout 300s;" >> ${NGINX_CONFIG_FILE}
+echo "fastcgi_read_timeout 300s;" >> ${NGINX_CONFIG_FILE}
 
 if [[ ! -f webapp/config/load_db_secrets.php ]]
 then
@@ -244,6 +248,8 @@ else
 	grep -v '^#' etc/restapi.secret | cut -f4
 fi
 
+echo "SENTRY_DSN=\"https://746f8f8c1cdb1e8dddf44ee5c9ea5a80@o128094.ingest.us.sentry.io/4507075626926080\"" >> webapp/.env.local
+
 if [[ -d /scripts/post-start.d/ ]]
 then
 	for i in /scripts/post-start.d/*
@@ -259,3 +265,4 @@ then
 		fi
 	done
 fi
+
